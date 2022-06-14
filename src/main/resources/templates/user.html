@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<p th:text="${user.getId()}">VALUE</p>
+<p th:text="${user.getName()}">VALUE</p>
+<p th:text="${user.getEmail()}">VALUE</p>
+<a th:href="@{/users}">Go to main page</a>
+<div>
+    <form th:method="POST" th:action="@{/users/update}" th:object="${user}">
+        <input type="hidden" th:field="*{id}" id="id"/>
+        <label for="name"> Enter the name </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <br/>
+        <label for="email">Enter email</label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <br/>
+        <input type="submit" value="Update user"/>
+    </form>
+</div>
+<div>
+    <form th:method="POST" th:action="@{/users/remove/{id}(id=${user.getId()})}" th:object="${user}">
+        <input type="submit" value="Remove this user user"/>
+    </form>
+</div>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package web.dao;
 
 import org.springframework.stereotype.Repository;
 import web.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
@@ -11,7 +12,7 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Override
     public void addUser(User user) {
@@ -37,7 +38,9 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void removeUser(int id) { entityManager.remove(getUserById(id)); }
+    public void removeUser(int id) {
+        entityManager.remove(getUserById(id));
+    }
 
     @Override
     public List<User> listUsers() {

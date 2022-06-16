@@ -21,14 +21,11 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        User updatableUser = getUserById(user.getId());
-        updatableUser.setName(user.getName());
-        updatableUser.setEmail((user.getEmail()));
         entityManager.merge(user);
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         User user = entityManager.find(User.class, id);
         if (user == null) {
             throw new EntityNotFoundException("Can't find User for ID "
@@ -38,7 +35,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void removeUser(int id) {
+    public void removeUser(long id) {
         entityManager.remove(getUserById(id));
     }
 
